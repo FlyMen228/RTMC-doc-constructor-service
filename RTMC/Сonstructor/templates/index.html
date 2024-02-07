@@ -1,5 +1,38 @@
 {% extends "base_generic.html" %}
 
+{% block load_scripts %}
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+{% endblock %}
+
 {% block content %}
-  yeap
+  <div id="pdf_frame"></div>
+
+  <script>
+    var pdfPath = "{{ pdf_file_path }}";
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var container = document.getElementById('pdf-frame');
+
+        pdfjsLib.getDocument(pdfPath).promise.then(function(pdfDoc) {
+            for (var pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                pdfDoc.getPage(pageNum).then(function(page) {
+                    var canvas = document.createElement('canvas');
+                    container.appendChild(canvas);
+
+                    var context = canvas.getContext('2d');
+                    var viewport = page.getViewport({ scale: 1.5 });
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    var renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+
+                    page.render(renderContext);
+                });
+            }
+        });
+    });
+</script>
 {% endblock %}
