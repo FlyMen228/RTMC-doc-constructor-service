@@ -1,29 +1,14 @@
 from psd_tools import PSDImage
 
-file = PSDImage.open('documents/сертификат.psd')
 
+psd_file = './documents/сертификат.psd'
 layer_name = 'ФИО'
+new_text = 'aboba'
 
-for layer in file:
-    
-    if layer.name == layer_name and layer.kind == 'type':
+image = PSDImage.open(psd_file)
+
+for layer in image._layers:
+    if layer.name == layer_name:
         
-        engine_data = layer._engine_data
 
-        editor = engine_data.get_editor()
-
-        editor.set_text('aboba')
-
-        layer.engine_data = editor.build()
-        
-        break
-    
-file.save('documents/modif_сертификат.psd')
-
-file.close()
-
-file = PSDImage.open('documents/сертификат.psd')
-
-for layer in file:
-
-    print(layer)
+image.save('./documents/mod_сертификат.pdf')
