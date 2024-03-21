@@ -11,13 +11,13 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'Сonstructor.apps.ConstructorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'constructor.apps.ConstructorConfig',
     # 'rest_framework',
     # 'corsheaders',
 ]
@@ -34,7 +34,7 @@ MIDDLEWARE = [
     # 'django.middleware.common.CommonMiddleware',
 ]
 
-ROOT_URLCONF = 'RTMC.urls'
+ROOT_URLCONF = 'rtmc.urls'
 
 TEMPLATES = [
     {
@@ -52,7 +52,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'RTMC.wsgi.application'
+WSGI_APPLICATION = 'rtmc.wsgi.application'
 
 
 DATABASES = {
@@ -96,7 +96,7 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
