@@ -4,38 +4,36 @@
   <title>Загрузка шаблона</title>
 {% endblock %}
 
-{% load static %}
-{% block load_scripts %}
-  <script src="{% static 'js/toggleFields.js' %}" type="text/javascript"></script>
-{% endblock %}
-
 {% block content %}
 
-    <form method="post">
+  <!--Это сообщение об успешном добавлении шаблона, надо бы его высвечивать выдвигающемся сверху-->
+  {% if messages %}
+  
+    <ul class="messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
 
-      {% csrf_token %}
+  {% endif %}
 
-      <select id="templateType" name="templateType" onchange="toggleFields()">
-        <option value="">Выберите тип шаблона...</option>
-        <option value="withoutOrg">Шаблон без организации</option>
-        <option value="withOrg">Шаблон с организацией</option>
-      </select>
+  <form method="post" enctype="multipart/form-data">
 
-      <div id="withoutOrganizationField" style="display:none;">
-        <label for="{{ form.template_name.id_for_label }}">Название шаблона (название мероприятия):</label>
-        {{ form.template_name }}
-      </div>
+    {% csrf_token %}
 
-      <div id="withOrganizationFields" style="display:none;">
-        <label for="{{ form.template_name.id_for_label }}">Название шаблона (название мероприятия):</label>
-        {{ form.template_name }}
+    <label for="{{ form.template_name.id_for_label }}">Название шаблона (название мероприятия):</label>
+    {{ form.template_name }}
 
-        <label for="{{ form.organization_name.id_for_label }}">Название организации:</label>
-        {{ form.organization_name }}
-      </div>
+    <select id="template_type" name="template_type">
+      <option value="wo">Шаблон без организации</option>
+      <option value="w">Шаблон с организацией</option>
+    </select>
 
-      <input type="submit" value="Сохранить шаблон">
+    <label for="{{ form.template_file.id_for_label }}">Загрузите pdf файл:</label>
+    <input type="file" id="{{ form.template_file.id_for_label }}" name="template_file">
 
-    </form>
+    <input type="submit" value="Сохранить шаблон">
+
+  </form>
 
 {% endblock %}
