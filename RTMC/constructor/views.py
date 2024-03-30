@@ -7,6 +7,7 @@ from django.contrib import messages
 from .forms import TemplateForm
 from .models import Template
 
+
 def index(request: request) -> HttpResponse:
     
     return render(request, 'index.html')
@@ -64,3 +65,23 @@ def make_template(request: request) -> HttpResponse:
     context = {'form': form}
 
     return render(request, 'constructor/make_template.html', context)
+
+
+def chose_template(request: request) -> HttpResponse:
+    
+    return render(request, 'constructor/chose_template.html')
+
+
+def search_template(request: request) -> HttpResponse:
+    
+    query = request.GET.get('query', '')
+
+    if query:
+
+        templates = Template.objects.filter(name__icontains=query)
+
+    else:
+
+        templates = Template.objects.none()
+        
+    return render(request, 'constructor/chose_template.html', {'templates': templates})

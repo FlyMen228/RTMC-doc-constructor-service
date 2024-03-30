@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+
+{% block title %}
+    <title>Выбор документа</title>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'search-template' %}" method="get">
+        <input type="text" name="query" placeholder="Введите название шаблона">
+        <button type="submit">Искать</button>
+    </form>
+
+    {% if templates %}
+        <ul>
+            {% for template in templates %}
+             <li>{{ template.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Шаблон с таким названием не найден.</p>
+    {% endif %}
+{% endblock %}
