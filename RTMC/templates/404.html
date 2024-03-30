@@ -1,0 +1,12 @@
+{% extends "header.html" %}
+
+{% block title %}
+    <title>Страница не найдена</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Страница не найдена!</h1>
+    <p>Запрошенный Вами ресурс не существует или был удалён.</p>
+
+    <button type="button"><a href="{% url 'index' %}">Вернуться на главную</a></button>
+{% endblock %}
