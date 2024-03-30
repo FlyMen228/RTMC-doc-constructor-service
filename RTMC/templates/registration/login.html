@@ -1,0 +1,43 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <p>Пользователь с такими логином и паролем не найден! Проверьте вводимые данные.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>У вашего аккаунта нет доступа к данной странице. Чтобы продолжить, 
+         войдите в аккаунт с необходимыми правами доступа или обратитесь к администратору.</p>
+    {% else %}
+      <p>Войдите в аккаунт, чтобы получить доступ к странице.</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+
+    {% csrf_token %}
+    
+    <table>
+
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+
+    </table>
+
+    <input type="submit" value="Авторизоваться">
+    <input type="hidden" name="next" value="{{ next }}">
+    
+  </form>
+
+  <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+
+{% endblock %}
