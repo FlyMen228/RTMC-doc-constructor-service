@@ -1,8 +1,9 @@
 import os
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import request, HttpResponse
 from django.contrib import messages
+from django.db.models import Q
 
 from .forms import TemplateForm
 from .models import Template
@@ -78,10 +79,17 @@ def search_template(request: request) -> HttpResponse:
 
     if query:
 
-        templates = Template.objects.filter(name__icontains=query)
+        templates = Template.objects.filter(Q(name__icontains=query))
 
     else:
 
         templates = Template.objects.none()
         
     return render(request, 'constructor/chose_template.html', {'templates': templates})
+
+
+def load_participants(request: request, id: int) -> HttpResponse:
+    
+    template = get_object_or_404(Template, pk=id)
+    
+    return render(request, 'constructor/load_participants.html', {'template' : template})

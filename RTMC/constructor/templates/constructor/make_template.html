@@ -8,17 +8,14 @@
 
   <!--Это сообщение об успешном добавлении шаблона, надо бы его высвечивать выдвигающемся сверху-->
   {% if messages %}
-  
     <ul class="messages">
       {% for message in messages %}
         <li>{{ message }}</li>
       {% endfor %}
     </ul>
-
   {% endif %}
 
   <form method="post" enctype="multipart/form-data">
-
     {% csrf_token %}
 
     <label for="{{ form.template_name.id_for_label }}">Название шаблона (название мероприятия):</label>
@@ -33,7 +30,6 @@
     <input type="file" id="{{ form.template_file.id_for_label }}" name="template_file">
 
     <input type="submit" value="Сохранить шаблон">
-
   </form>
 
 {% endblock %}
