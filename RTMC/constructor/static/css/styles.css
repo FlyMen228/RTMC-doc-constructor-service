@@ -1,0 +1,54 @@
+/* 
+rgb(138, 68, 33)
+rgb(64, 171, 2) 
+rgb(153, 153, 153)
+rgb(23, 23, 22)
+*/
+
+
+body {
+    margin: 0% 10%;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 0px rgb(64, 171, 2);
+    margin: 20px;
+}
+
+.template-options a {
+    margin-right: 20px
+}
+
+#create_a_sample, #download_participant_database {
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    background-color: rgb(64, 171, 2);
+    border-radius: 5px;
+    padding: 15px;
+}
+#create_a_sample:hover, #download_participant_database:hover {
+    background-color: rgb(153, 153, 153);
+}
+
+#get_document {
+    background-color: rgb(64, 171, 2);
+    border-radius: 5px;
+    padding: 15px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+#get_document:hover {
+    background-color: rgb(153, 153, 153);
+}
+
+#button_get_document {
+    text-align: center;
+}
