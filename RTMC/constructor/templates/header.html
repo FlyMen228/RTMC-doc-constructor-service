@@ -30,8 +30,8 @@
 <<<<<<< HEAD
       {% if user.is_authenticated %}
         <div class="template-options">
-          <a href="{% url 'make-template' %}">Создать шаблон</a></li>
-          <a href="{% url 'chose-template' %}">Загрузить базу участников</a></li>
+          <a href="{% url 'make-template' %}" id="make-template">Создать шаблон</a></li>
+          <a href="{% url 'chose-template' %}" id="load-participants">Загрузить базу участников</a></li>
         </div>
 
         <li>User: {{ user.get_username }}</li>
