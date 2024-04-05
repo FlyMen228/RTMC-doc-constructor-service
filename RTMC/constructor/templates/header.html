@@ -27,11 +27,10 @@
         <img src="{% static 'images/logotype.png' %}" alt="Logo" class="logo">
       </a>
 
-<<<<<<< HEAD
       {% if user.is_authenticated %}
         <div class="template-options">
-          <a href="{% url 'make-template' %}">Создать шаблон</a></li>
-          <a href="{% url 'chose-template' %}">Загрузить базу участников</a></li>
+          <a href="{% url 'make-template' %}" id="make-template">Создать шаблон</a></li>
+          <a href="{% url 'chose-template' %}" id="load-participants">Загрузить базу участников</a></li>
         </div>
 
         <li>User: {{ user.get_username }}</li>
@@ -45,12 +44,6 @@
       {% else %}
         <li><a href="{% url 'login' %}?next={{ request.path }}">Авторизоваться</a></li>
       {% endif %}
-=======
-      <div class="template-options">
-        <a href="{% url 'make-template' %}" id="create_a_sample">Создать шаблон</a></li>
-        <a id="download_participant_database">Загрузить базу участников</a></li>
-      </div>
->>>>>>> 603980b (оформила хеддер, добавила id к тегам, в index добавила тег <p)
     </div>
 
     <div class="col-sm-12 ">{% block content %}{% endblock %}</div>
