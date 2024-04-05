@@ -26,29 +26,18 @@ body {
     margin-right: 20px
 }
 
-#create_a_sample, #download_participant_database {
+#create_a_sample, #download_participant_database, button#get_document {
     text-decoration: none;
     color:rgb(255, 255, 255);
     background-color: rgb(64, 171, 2);
     border-radius: 5px;
     padding: 15px;
+    border: none;
 }
-#create_a_sample:hover, #download_participant_database:hover {
+#create_a_sample:hover, #download_participant_database:hover, button#get_document:hover {
     background-color: rgb(153, 153, 153);
-}
-
-#get_document {
-    background-color: rgb(64, 171, 2);
-    border-radius: 5px;
-    padding: 15px;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
 }
 
 #get_document:hover {
     background-color: rgb(153, 153, 153);
-}
-
-#button_get_document {
-    text-align: center;
 }
