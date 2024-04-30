@@ -1,16 +1,17 @@
-function toggleFields() {
+document.addEventListener("DOMContentLoaded", function () {
+    window.toggleFields = function toggleFields() {
+        var select_value = document.getElementById('load_type').value;
 
-    var selectValue = document.getElementById('templateType').value;
-    var withoutOrganization = document.getElementById('withoutOrganizationField');
-    var withOrganization = document.getElementById('withOrganizationFields');
+        var one = document.getElementById('load_one');
+        var many = document.getElementById('load_many');
 
-    withoutOrganization.style.display = 'none';
-    withOrganization.style.display = 'none';
+        one.style.display = 'none';
+        many.style.display = 'none';
 
-    if (selectValue === 'withoutOrg') {
-        withoutOrganization.style.display = 'block';
-    } else if (selectValue === 'withOrg') {
-        withOrganization.style.display = 'block';
+        if (select_value === 's') {
+            one.style.display = 'block';
+        } else if (select_value === 'm') {
+            many.style.display = 'block';
+        }
     }
-
-}
+});

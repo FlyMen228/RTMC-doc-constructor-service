@@ -6,6 +6,7 @@ class Template(models.Model):
     
     id = models.AutoField(verbose_name='ID', primary_key=True)
     
+    
     name = models.CharField(verbose_name='Название шаблона', max_length=200, unique=True, null=True,
                             help_text='Название мероприятия + грамота, сертификат и т.п')
     
@@ -21,7 +22,7 @@ class Template(models.Model):
                                 help_text='Указывается ли организация в шаблоне или нет')
     
     creation_datetime = models.DateTimeField(verbose_name='Дата и время создания шаблона', default=timezone.now,
-                                             help_text='Дата создания шаблона')
+                                             help_text='Дата и время создания шаблона')
     
     
     class Meta:
@@ -32,9 +33,46 @@ class Template(models.Model):
         
         verbose_name_plural = 'Шаблоны'
         
-        indexes = [models.Index(fields=['name'], name='template_name'),]
+        indexes = [models.Index(fields=['name'], name='template_name'),
+                   models.Index(fields=['doc_type'], name='template_doc_type'),]
     
     
     def __str__(self) -> str:
         
         return self.name
+
+
+
+
+class Participant(models.Model):
+    
+    fullname = models.CharField(verbose_name="ФИО", max_length=120,
+                                help_text='Полное имя участника мероприятия. Не длиннее 120 символов')
+    
+    organization_name = models.CharField(verbose_name='Название организации участника', max_length=200, null=True, blank=True,
+                                         help_text='Если в шаблоне есть поле организации, поле заполняется')
+    
+    creation_datetime = models.DateTimeField(verbose_name='Дата и время добавления участника мероприятия', default=timezone.now,
+                                             help_text='Дата и время добавления участника мероприятия')
+    
+    
+    template = models.ForeignKey('Template', verbose_name='Относится к документну', on_delete=models.CASCADE,
+                                 help_text='Выбранный при заполнении шаблон документа')
+    
+    
+    class Meta:
+        
+        ordering = ['id', '-creation_datetime']
+        
+        verbose_name = 'Участник мероприятия'
+        
+        verbose_name_plural = 'Участникик мероприятия'
+        
+        indexes = [models.Index(fields=['fullname'], name='participant_fullname'),
+                   models.Index(fields=['template'], name='participant_template'),
+                   models.Index(fields=['organization_name'], name='participant_organization_name'),]
+        
+    
+    def __str__(self) -> str:
+        
+        return '%s (Мероприятие: %s). Организация: %s' % (self.fullname, self.template, self.organization_name)

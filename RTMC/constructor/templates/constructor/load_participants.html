@@ -4,6 +4,55 @@
     <title>Загрузка участников мероприятий</title>
 {% endblock %}
 
+{% block style %}
+    <style>
+        .forms-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .form-wrapper {
+            width: 48%;
+        }
+    </style>
+{% endblock %}
+    
 {% block content %}
-    <p>{{template.name}}</p>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="forms-container">
+        <h2>Вы можете загрузить одного участника</h2>
+
+        <div class="form-wrapper">
+            <form id="load_one" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+    <div class="forms-container">
+        <h2>Или загрузить сразу многих</h2>
+
+        <div class="form-wrapper">
+            <form id="load_many" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                
+
+            </form>
+        </div>
+    </div>
+
 {% endblock %}
