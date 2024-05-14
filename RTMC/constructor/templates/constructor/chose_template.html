@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'search-template' %}" method="get">
-        <input type="text" name="query" placeholder="Введите название шаблона">
-        <button type="submit">Искать</button>
-    </form>
+    <div id="chose_template_content">
+        <div class="content_chose_template">
+            <form id="template-form" action="{% url 'search-template' %}" method="get">
+                <input type="text" id="template-name" name="query" placeholder="Введите название шаблона">
+                <button type="submit">Искать</button>
+            </form>
+        </div>
+    </div>
 
     {% if templates %}
         <ul>
@@ -17,6 +21,13 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>Шаблон с таким названием не найден.</p>
+        <p id="no-results" style="display: none;">Шаблон с таким названием не найден.</p>
     {% endif %}
 {% endblock %}
+
+<!-- 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+ -->
