@@ -1,58 +1,129 @@
-{% extends "header.html" %}
-
-{% block title %}
-    <title>Загрузка участников мероприятий</title>
+{% extends "header.html" %} {% block title %}
+<title>Загрузка участников мероприятий</title>
 {% endblock %}
 
-{% block style %}
-    <style>
-        .forms-container {
-            display: flex;
-            justify-content: space-around;
-        }
-        .form-wrapper {
-            width: 48%;
-        }
-    </style>
-{% endblock %}
-    
 {% block content %}
 
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 
-    <div class="forms-container">
-        <h2>Вы можете загрузить одного участника</h2>
+<div class="body_form_load_templates">
+  <div class="container_form_load_templates">
+    <h2>Выберите способ загрузки данных:</h2>
 
-        <div class="form-wrapper">
-            <form id="load_one" method="post" enctype="multipart/form-data">
+    <div class="accordion" id="accordionExample">
+      <!-- Загрузка файлом -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="fileUploadHeader">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#fileUploadCollapse"
+            aria-expanded="true"
+            aria-controls="fileUploadCollapse"
+          >
+            Загрузка файлом
+          </button>
+        </h2>
+        <div
+          id="fileUploadCollapse"
+          class="accordion-collapse collapse"
+          aria-labelledby="fileUploadHeader"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="justify-content-center align-items-center">
+              <input type="file" id="file_input" class="form-control mb-3" />
 
-                {% csrf_token %}
-
-
-
-            </form>
+              <!-- !!!Здесь осуществляется загрузка файлом 
+                                        Нужно ли здесь:
+                                                {% csrf_token %}                -->
+              <button onclick="uploadFile()" id="upload-button">
+                Загрузить
+              </button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
 
+      <!-- Ручной ввод -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="manualInputHeader">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#manualInputCollapse"
+            aria-expanded="false"
+            aria-controls="manualInputCollapse"
+          >
+            Ручной ввод
+          </button>
+        </h2>
+        <div
+          id="manualInputCollapse"
+          class="accordion-collapse collapse"
+          aria-labelledby="manualInputHeader"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <form id="add_person_form">
+              <label for="first_name" class="form-label">Имя:</label>
+              <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                required
+                class="form-control"
+              /><br />
 
-    <div class="forms-container">
-        <h2>Или загрузить сразу многих</h2>
+              <label for="last_name" class="form-label">Фамилия:</label>
+              <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                required
+                class="form-control"
+              /><br />
 
-        <div class="form-wrapper">
-            <form id="load_many" method="post" enctype="multipart/form-data">
+              <label for="middle_name" class="form-label">Отчество:</label>
+              <input
+                type="text"
+                id="middle_name"
+                name="middle_name"
+                class="form-control"
+              /><br />
 
-                {% csrf_token %}
-
-                
-
+              <!-- !!!Здесь осуществляется загрузка поединично!!! 
+                                                Нужно ли здесь:
+                                                {% csrf_token %}                -->
+              <input type="submit" value="Добавить" />
             </form>
+            <!-- Таблица для участников -->
+            <table id="person_table">
+              <thead>
+                <tr>
+                  <th>№</th>
+                  <th>Имя</th>
+                  <th>Фамилия</th>
+                  <th>Отчество</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Здесь будут добавляться строки с ФИО из формы -->
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
 
 {% endblock %}
