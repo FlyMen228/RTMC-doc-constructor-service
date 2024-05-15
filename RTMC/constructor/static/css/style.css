@@ -1,3 +1,7 @@
+body {
+  color:rgb(23, 23, 22);
+}
+
 /* ___________________ Header and Footer _______________________ */
 header {
   display: flex;
@@ -58,7 +62,6 @@ footer {
 }
 /* ___________________ Header and Footer _______________________ */
 
-
 /* ___________________ Make_Template ____________________________ */
 .body-form {
   margin-bottom: 100px;
@@ -108,8 +111,6 @@ input[type="file"] {
 }
 /* ___________________ Make_Template ____________________________ */
 
-
-
 /* ___________________ Chose_Template ____________________________ */
 #chose_template_content {
   font-family: Arial, sans-serif;
@@ -142,8 +143,8 @@ input[type="file"] {
   color: rgb(23, 23, 22);
   background-color: #fff;
   background-clip: padding-box;
-  border-radius: .25rem;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .content_chose_template input[type="text"]:focus {
@@ -200,15 +201,9 @@ input[type="file"] {
 }
 /* ___________________ Chose_Template ____________________________ */
 
-
 /* ____________________ index ______________________________ */
 .container-main-text {
   margin-bottom: 200px;
-}
-
-.main_block .mt-5 {
-  display: flex;
-  align-items: center;
 }
 
 .main_block .mt-5 div {
@@ -230,9 +225,16 @@ input[type="file"] {
   font-size: xx-large;
   border-radius: 8px;
   transition: background-color 0.3s;
+  background-color: rgb(64, 171, 2);
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .main_block {
+  display: flex;
+  text-align: center;
+  justify-content: center;
   max-width: 2000px;
   margin: auto;
   background-color: #fff;
@@ -241,21 +243,11 @@ input[type="file"] {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#first-block {
-  max-width: 1300px;
-}
-
-#second-block {
-  max-width: 700px;
-}
-
 #get-document button:active {
   background-color: rgb(57, 151, 3);
-  border-color: rgb(57, 151, 3);
 }
+
 /* _______________ index ________________________ */
-
-
 
 /* ___________________load_templates________________________ */
 .body_form_load_templates {
