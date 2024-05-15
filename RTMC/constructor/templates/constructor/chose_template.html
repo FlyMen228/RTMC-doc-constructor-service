@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'search-template' %}" method="get">
-        <input type="text" name="query" placeholder="Введите название шаблона">
-        <button type="submit">Искать</button>
-    </form>
+    <div id="chose_template_content">
+        <div class="content_chose_template">
+            <form id="template-form" action="{% url 'search-template' %}" method="get">
+                <input type="text" id="template-name" name="query" placeholder="Введите название шаблона">
+                <button type="submit">Искать</button>
+            </form>
+        </div>
+    </div>
 
     {% if templates %}
         <ul>
@@ -17,6 +21,6 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>Шаблон с таким названием не найден.</p>
+        <p id="no-results" style="display: none;">Шаблон с таким названием не найден.</p>
     {% endif %}
 {% endblock %}

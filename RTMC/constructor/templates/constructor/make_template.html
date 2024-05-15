@@ -1,35 +1,40 @@
 {% extends "header.html" %}
 
 {% block title %}
-  <title>Загрузка шаблона</title>
+<title>Загрузка шаблона</title>
 {% endblock %}
 
 {% block content %}
 
-  <!--Это сообщение об успешном добавлении шаблона, надо бы его высвечивать выдвигающемся сверху-->
-  {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+<!-- Не сделано -->
+<!--Это сообщение об успешном добавлении шаблона, надо бы его высвечивать выдвигающемся сверху-->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+<div class="container-form">
+    <form id="template-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <label for="{{ form.template_name.id_for_label }}">Название шаблона (название мероприятия):</label>
-    {{ form.template_name }}
+        <label for="{{ form.template_name.id_for_label }}">Название шаблона (название мероприятия):</label>
+        {{ form.template_name }}
+        <input type="text" id="template_name" name="template_name" required class="form-control">
 
-    <select id="template_type" name="template_type">
-      <option value="wo">Шаблон без организации</option>
-      <option value="w">Шаблон с организацией</option>
-    </select>
+        <label for="template_type">Тип шаблона:</label>
+        <select id="template_type" name="template_type" required class="form-select">
+            <option value="wo">Шаблон без организации</option>
+            <option value="w">Шаблон с организацией</option>
+        </select>
 
-    <label for="{{ form.template_file.id_for_label }}">Загрузите pdf файл:</label>
-    <input type="file" id="{{ form.template_file.id_for_label }}" name="template_file">
+        <label for="{{ form.template_file.id_for_label }}">Загрузите pdf файл:</label>
+        <input type="file" id="{{ form.template_file.id_for_label }}" name="template_file" required class="form-control mb-3">
 
-    <input type="submit" value="Сохранить шаблон">
-  </form>
+        <button type="submit">Сохранить шаблон</button>
+    </form>
+</div>
 
 {% endblock %}
