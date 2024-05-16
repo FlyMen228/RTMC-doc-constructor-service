@@ -14,17 +14,15 @@
       crossorigin="anonymous"
     />
 
-    {% block load_scripts %}{% endblock %} {% load static %}
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="{% static 'images/favicon.ico' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/style.css' %}"
-    />
+    {% block load_scripts %}{% endblock %}
+    
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+
+    {% block style %}
+      <style></style>
+    {% endblock %}
   </head>
 
   <body>
@@ -50,34 +48,24 @@
               >
             </li>
 
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <form
-                id="logout-form"
-                method="post"
-                action="{% url 'admin:logout' %}"
-              >
-                {% csrf_token %}
-                <button type="submit" class="nav-link">
-                  Выйти из аккаунта
-                </button>
-              </form>
-            </li>
+      {% if user.is_authenticated %}
+        <div class="template-options">
+          <a href="{% url 'make-template' %}" id="make-template">Создать шаблон</a></li>
+          <a href="{% url 'chose-template' %}" id="load-participants">Загрузить базу участников</a></li>
+        </div>
 
-            {% else %}
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="{% url 'login' %}?next={{ request.path }}"
-                >Авторизоваться</a
-              >
-            </li>
+        <li>User: {{ user.get_username }}</li>
+        <li>
+          <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+            {% csrf_token %}
 
-            {% endif %}
-          </ul>
-        </nav>
-      </div>
-    </header>
+            <button type="submit" class="btn btn-link">Выйти из аккаунта</button>
+          </form>
+        </li>
+      {% else %}
+        <li><a href="{% url 'login' %}?next={{ request.path }}">Авторизоваться</a></li>
+      {% endif %}
+    </div>
 
     <div class="col-sm-14">{% block content %}{% endblock %}</div>
 
@@ -96,4 +84,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
+
 </html>

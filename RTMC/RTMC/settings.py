@@ -97,6 +97,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
 
+
 LOGIN_REDIRECT_URL = '/'
 
 
