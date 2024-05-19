@@ -5,8 +5,11 @@ from django.http import request, HttpResponse
 from django.contrib import messages
 from django.db.models import Q
 
-from .forms import TemplateForm
-from .models import Template
+from .forms import TemplateForm, LoadParticipantForm, LoadParticipantsForm
+
+from .models import Template, Participant
+
+from .scripts import split_csv
 
 
 def index(request: request) -> HttpResponse:
@@ -92,4 +95,72 @@ def load_participants(request: request, id: int) -> HttpResponse:
     
     template = get_object_or_404(Template, pk=id)
     
-    return render(request, 'constructor/load_participants.html', {'template' : template})
+    if request.method == "POST":
+        
+        load_participants_form = LoadParticipantsForm(request.POST, request.FILES)
+        load_participant_form = LoadParticipantForm(request.POST)
+        
+        if "submit_many" in request.POST:
+            
+            csv_file = request.FILES['load_file']
+            
+            participants = split_csv(csv_file)
+            
+            for participant in participants:
+                
+                new_participant = Participant(
+                    fullname = participant[0],
+                    organization_name = participant[1],
+                    template = template
+                )
+                
+                new_participant.save()
+                
+            messages.success(request, 'Участники успешно добавлены!')
+            
+            context = {
+                'template' : template,
+                'load_participant_form' : LoadParticipantForm(),
+                'load_participants_form' : LoadParticipantsForm(),
+            }
+            
+            return render(request, 'constructor/load_participants.html', context)
+        
+        
+        if "submit_one" in request.POST:
+            
+            new_participant = Participant(
+                fullname = load_participant_form.cleaned_data['fullname'],
+                organization_name = load_participant_form.cleaned_data['organization_name'],
+                template = template
+            )
+            
+            new_participant.save()
+            
+            messages.success(request, 'Участник успешно добавлен!')
+            
+            context = {
+                'template' : template,
+                'load_participant_form' : LoadParticipantForm(),
+                'load_participants_form' : LoadParticipantsForm(),
+            }
+            
+            return render(request, 'constructor/load_participants.html', context)
+
+        
+        context = {
+            'template' : template,
+            'load_participant_form' : load_participant_form,
+            'load_participants_form' : load_participants_form,
+        }
+        
+        return render(request, 'constructor/load_participants.html', context)
+        
+    
+    context = {
+        'template' : template,
+        'load_participant_form' : LoadParticipantForm(),
+        'load_participants_form' : LoadParticipantsForm(),
+    }
+    
+    return render(request, 'constructor/load_participants.html', context)
