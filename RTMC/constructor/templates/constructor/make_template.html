@@ -21,8 +21,7 @@
         {% csrf_token %}
 
         <label for="{{ form.template_name.id_for_label }}">Название шаблона (название мероприятия):</label>
-        {{ form.template_name }}
-        <input type="text" id="template_name" name="template_name" required class="form-control">
+        {{ form.template_name }} 
 
         <label for="template_type">Тип шаблона:</label>
         <select id="template_type" name="template_type" required class="form-select">
