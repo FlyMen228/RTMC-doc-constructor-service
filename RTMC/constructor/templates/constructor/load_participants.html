@@ -1,5 +1,5 @@
 {% extends "header.html" %} {% block title %}
-<title>Загрузка участников мероприятий</title>
+<title>Загрузить участников мероприятия</title>
 {% endblock %} {% block content %} {% if messages %}
 <ul class="messages">
   {% for message in messages %}
@@ -50,20 +50,17 @@
                 href="{% static 'files/load_participants.csv' %}"
                 download="Шаблон для загрузки многих участников.csv"
                 style="text-decoration: none;"
-                >Скачать шаблон</a
-              >
+                >Скачать шаблон</a>
             </div>
             <form
               id="load-participants-form"
               method="post"
-              enctype="multipart/form-data"
-            >
+              enctype="multipart/form-data">
               {% csrf_token %}
               <div class="mb-3">
                 <label for="{{ form.load_file.id_for_label }}" class="form-label"
                   style="display: block; margin-bottom: 5px;"
-                  >Загрузите csv файл:</label
-                >
+                  >Загрузите csv файл:</label>
                 <input
                   class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
                   type="file"
@@ -76,9 +73,7 @@
                     margin-bottom: 20px;
                     border: 1px solid #ccc;
                     border-radius: 4px;
-                    box-sizing: border-box;
-                  "
-                />
+                    box-sizing: border-box;"/>
               </div>
               <div class="text-center">
                 <button

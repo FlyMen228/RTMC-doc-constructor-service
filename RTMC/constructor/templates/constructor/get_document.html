@@ -1,0 +1,27 @@
+{% extends "header.html" %}
+
+{% block title %}
+<title>Получить документ</title>
+{% endblock %}
+
+{% block content %}
+    <p>Введите своё ФИО или название Вашей организации</p>
+
+    <form action="{% url 'search-document' %}" method="get">
+        <input type="text" name="query" placeholder="ФИО или название организации" />
+
+        <button type="submit">Искать</button>
+    </form>
+
+    {% if documents %}
+    <ul>
+        {% for document in documents %}
+            <li>
+                <a href="{{ MEDIA_URL }}{{ document.path_to_file }}" download="{{ document.name }}.pdf">{{ document.name }}</a>
+            </li> 
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Документа с таким ФИО или названием ораганизации не найден.</p>
+    {% endif %}
+{% endblock %}

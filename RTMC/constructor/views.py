@@ -1,6 +1,7 @@
 import os
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
 from django.http import request, HttpResponse
 from django.contrib import messages
 from django.db.models import Q
@@ -15,6 +16,38 @@ from .scripts import split_csv
 def index(request: request) -> HttpResponse:
     
     return render(request, 'index.html')
+
+
+def get_document(request: request) -> HttpResponse:
+    
+    return render(request, 'constructor/get_document.html')
+
+
+def search_document(request: request) -> HttpResponse:
+    
+    query = request.GET.get('query', '')
+
+    if query:
+
+        participants = Participant.objects.filter(
+
+            Q(fullname__icontains=query) | Q(organization_name__icontains=query)
+
+        )
+
+        documents = set()
+
+        for participant in participants:
+
+            documents.add(participant.template)
+            
+        documents = list(documents)
+
+    else:
+
+        documents = Template.objects.none()
+        
+    return render(request, 'constructor/get_document.html', {'documents': documents})
 
 
 def make_template(request: request) -> HttpResponse:
@@ -34,7 +67,7 @@ def make_template(request: request) -> HttpResponse:
 
             save_path = os.path.join('constructor', 'documents', template_name + '.pdf')
             
-            full_save_path = os.path.join(os.getcwd(), save_path)
+            full_save_path = os.path.join(settings.MEDIA_ROOT, save_path)
             
             os.makedirs(os.path.dirname(full_save_path), exist_ok=True)
             
@@ -127,7 +160,7 @@ def load_participants(request: request, id: int) -> HttpResponse:
             return render(request, 'constructor/load_participants.html', context)
         
         
-        if "submit_one" in request.POST:
+        if "submit_one" in request.POST and load_participant_form.is_valid():
             
             new_participant = Participant(
                 fullname = load_participant_form.cleaned_data['fullname'],

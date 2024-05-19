@@ -1,6 +1,10 @@
-{% extends "header.html" %} {% block title %}
-<title>Выбор шаблона</title>
-{% endblock %} {% block content %}
+{% extends "header.html" %} 
+
+{% block title %}
+<title>Выбрать шаблон</title>
+{% endblock %} 
+
+{% block content %}
 <section class="template-search-container">
   <div class="search-form-wrapper">
     <h1>Выберите шаблон</h1>
@@ -8,14 +12,13 @@
     <form
       id="template-form"
       action="{% url 'search-template' %}"
-      method="get"
-    >
+      method="get">
       <input
         type="text"
         id="template-name"
         name="query"
-        placeholder="Название шаблона"
-      />
+        placeholder="Название шаблона"/>
+        
       <button type="submit">Искать</button>
     </form>
   </div>
@@ -36,5 +39,4 @@
     {% endif %}
   </div>
 </section>
-
 {% endblock %}
