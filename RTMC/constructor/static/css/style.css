@@ -201,7 +201,7 @@ footer {
 }
 
 .search-results-wrapper {
-  max-width: 500px;
+  width: 450px;
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -247,17 +247,17 @@ footer {
 /* ____________________ index ______________________________ */
 
 .container-main-text {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   padding: 20px;
   margin-bottom: 100px;
+  position: relative;
 }
 
 .carousel-inner .carousel-item img {
   border-radius: 8px;
   object-fit: cover;
-  max-height: 600px;
-  width: 100%;
+  max-height: 480px;
 }
 
 .carousel-control-prev-icon,
@@ -267,54 +267,65 @@ footer {
 }
 
 .main_block {
+  margin-top: 10px;
   background-color: #fff;
-  padding: 40px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#second-block {
-  margin: auto;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-#second-block #get-document .btn {
-  color: white;
-  padding: 3% 2%;
-  font-size: xx-large;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-  background-color: rgb(64, 171, 2);
-  border: none;
-  cursor: pointer;
-}
-
-#second-block #get-document .btn:hover {
-  background-color: rgb(57, 151, 3);
 }
 
 #first-block {
   width: 100%;
   margin: auto;
   text-align: center;
-  color: #666;
-  font-size: 1.1em;
-  line-height: 1.6;
-}
-
-.main_block .mt-5 div {
-  padding: 1% 5%;
-  font-size: larger;
-}
-
-.container-main-text h1 {
-  padding-top: 2%;
-  font-size: xxx-large;
-  text-align: center;
+  color: rgb(23, 23, 22);
+  font-size: xx-large;
   margin-bottom: 40px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 120px;
+  right: 0;
+  width: 80%;
+  text-align: center;
+  z-index: 2;
+  color: #fff;
+}
+
+.overlay h1 {
+  margin-top: 30px;
+  padding: 10px;
+  font-size: xxx-large;
+  font-weight: 900;
+  display: inline-block;
+}
+
+.overlay .btn:hover {
+  padding: 2%;
+  border-radius: 8px;
+  background-color: rgb(57, 151, 3);
+}
+
+.overlay .btn {
+  margin-top: 20%;
+  font-size: xx-large;
+  padding: 2%;
+  color: white;
+  border-radius: 8px;
+  background-color: rgb(64, 171, 2);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#carousel {
+  z-index: 1;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  z-index: 3;
 }
 /* _______________ index ________________________ */
 
@@ -382,6 +393,7 @@ footer {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  margin-top: 20px;
 }
 
 .container_form_load_templates input[type="submit"]:hover,
