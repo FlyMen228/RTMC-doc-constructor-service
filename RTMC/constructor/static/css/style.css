@@ -568,3 +568,60 @@ footer {
   background-color: rgb(62, 165, 2);
 }
 /* _______________password_reset_form_______________________ */
+
+
+/* ______________________404.html______________________________ */
+#error404 {
+  font-family: Arial, sans-serif;
+  background-color: rgb(140, 34, 34);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("404.jpg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: auto;
+  color: rgb(23, 23, 22);
+}
+
+.error-container {
+  text-align: center;
+  max-width: 800px;
+  padding: 20px 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-container h1 {
+  color: rgb(138, 19, 17);
+  font-size: xxx-large;
+  font-weight: 700;
+}
+
+.error-container p {
+  margin: 10%;
+  font-size: larger;
+}
+
+.error-container button {
+  width: 100%;
+  padding: 20px 30px;
+  background-color: rgb(64, 171, 2);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: x-large;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.error-container button:hover {
+  background-color: rgb(56, 148, 3);
+}
+/* ______________________404.html______________________________ */
