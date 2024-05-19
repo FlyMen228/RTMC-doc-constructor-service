@@ -1,26 +1,40 @@
-{% extends "header.html" %}
-
-{% block title %}
-    <title>Выбор шаблона</title>
-{% endblock %}
-
-{% block content %}
-    <div id="chose_template_content">
-        <div class="content_chose_template">
-            <form id="template-form" action="{% url 'search-template' %}" method="get">
-                <input type="text" id="template-name" name="query" placeholder="Введите название шаблона">
-                <button type="submit">Искать</button>
-            </form>
-        </div>
-    </div>
-
+{% extends "header.html" %} {% block title %}
+<title>Выбор шаблона</title>
+{% endblock %} {% block content %}
+<section class="template-search-container">
+  <div class="search-form-wrapper">
+    <h1>Выберите шаблон</h1>
+    <p>Введите название шаблона, чтобы найти его.</p>
+    <form
+      id="template-form"
+      action="{% url 'search-template' %}"
+      method="get"
+    >
+      <input
+        type="text"
+        id="template-name"
+        name="query"
+        placeholder="Название шаблона"
+      />
+      <button type="submit">Искать</button>
+    </form>
+  </div>
+  <div class="search-results-wrapper">
+    <h1>Результаты поиска</h1>
     {% if templates %}
-        <ul>
-            {% for template in templates %}
-             <li><a href="{% url 'load-participants' template.id %}">{{ template.name }}</a></li>
-            {% endfor %}
-        </ul>
+    <ul class="template-list">
+      {% for template in templates %}
+      <li>
+        <a href="{% url 'load-participants' template.id %}">{{ template.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
     {% else %}
-        <p id="no-results" style="display: none;">Шаблон с таким названием не найден.</p>
+    <p id="no-results">
+      Шаблон с таким названием не найден.
+    </p>
     {% endif %}
+  </div>
+</section>
+
 {% endblock %}

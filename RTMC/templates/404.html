@@ -1,70 +1,17 @@
 {% extends "header.html" %} {% block title %}
 <title>Страница не найдена</title>
-{% endblock %} {% block style %}
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: rgb(140, 34, 34);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url("404.jpg");
-    background-position: left bottom;
-    background-repeat: no-repeat;
-    background-size: auto;
-    color: rgb(23, 23, 22);
-  }
+{% endblock %} 
 
-  .error-container {
-    text-align: center;
-    max-width: 800px;
-    padding: 20px 40px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+{% block content %}
+<div id="error404">
+  <div class="error-container">
+    <h1>Страница не найдена!</h1>
+    <p>Запрошенный Вами ресурс не существует или был удалён.</p>
 
-  h1 {
-    color: rgb(138, 19, 17);
-    font-size: xxx-large;
-    font-weight: 700;
-  }
-
-  p {
-    margin: 10%;
-    font-size: larger;
-  }
-
-  button {
-    width: 100%;
-    padding: 20px 30px;
-    background-color: rgb(64, 171, 2);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: x-large;
-    font-weight: 600;
-    border-radius: 10px;
-  }
-
-  button:hover {
-    background-color: rgb(56, 148, 3);
-  }
-</style>
-{% endblock %} {% block content %}
-
-<div class="error-container">
-  <h1>Страница не найдена!</h1>
-  <p>Запрошенный Вами ресурс не существует или был удалён.</p>
-
-  <button type="button">
-    <a href="{% url 'index' %}">Вернуться на главную</a>
-  </button>
+    <button type="button">
+      <a href="{% url 'index' %}">Вернуться на главную</a>
+    </button>
+  </div>
 </div>
 
 {% endblock %}
