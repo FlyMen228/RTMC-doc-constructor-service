@@ -11,7 +11,7 @@ def split_csv(csv_file) -> list:
     rows = []
     
     for row in reader:
-        
+        print(row)
         rows.append([row['fullname'], row.get('organization_name', None)])
     
     return rows

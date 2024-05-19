@@ -16,4 +16,4 @@ if settings.DEBUG:
     
     urlpatterns += [
         path('test-404/', page_not_found, kwargs={'exception': Exception("Page not Found")}),
-    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+        ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

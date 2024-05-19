@@ -97,6 +97,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/documents/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'documents')
+
 
 LOGIN_REDIRECT_URL = '/'
 

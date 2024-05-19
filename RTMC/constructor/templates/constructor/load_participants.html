@@ -1,10 +1,10 @@
-{% extends "header.html" %} 
+{% extends "header.html" %}
 
 {% block title %}
 <title>Загрузка участников мероприятий</title>
-{% endblock %} 
+{% endblock %}
 
-{% block content %} 
+{% block content %}
 
 {% if messages %}
 <ul class="messages">
@@ -47,55 +47,11 @@
           id="fileUploadCollapse"
           class="accordion-collapse collapse show"
           aria-labelledby="fileUploadHeader"
-          data-bs-parent="#accordionExample"
-        >
-          <div class="accordion-body" style="background-color: white;">
-            <div class="text-center mb-3">
-              {% load static %}
-              <a
-                href="{% static 'files/load_participants.csv' %}"
-                download="Шаблон для загрузки многих участников.csv"
-                style="text-decoration: none;"
-                >Скачать шаблон</a
-              >
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="justify-content-center align-items-center">
+              <!--Сюда форму для загрузки файлом вставить-->
             </div>
-            <form
-              id="load-participants-form"
-              method="post"
-              enctype="multipart/form-data"
-            >
-              {% csrf_token %}
-              <div class="mb-3">
-                <label for="{{ form.load_file.id_for_label }}" class="form-label"
-                  style="display: block; margin-bottom: 5px;"
-                  >Загрузите csv файл:</label
-                >
-                <input
-                  class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
-                  type="file"
-                  id="{{ form.load_file.id_for_label }}"
-                  name="load_file"
-                  required
-                  style="
-                    width: 100%;
-                    padding: 10px;
-                    margin-bottom: 20px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    box-sizing: border-box;
-                  "
-                />
-              </div>
-              <div class="text-center">
-                <button
-                  type="submit"
-                  id="upload-button"
-                  name="submit_many"
-                >
-                  Загрузить участников
-                </button>
-              </div>
-            </form>
           </div>
         </div>
       </div>

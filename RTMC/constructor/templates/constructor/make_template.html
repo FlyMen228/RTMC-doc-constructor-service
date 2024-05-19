@@ -1,8 +1,8 @@
 {% extends "header.html" %} 
 
 {% block title %}
-<title>Загрузка шаблона</title>
-{% endblock %} 
+<title>Загрузить шаблон</title>
+{% endblock %}
 
 {% block content %}
 {% if messages %}
@@ -22,9 +22,11 @@
 {% endif %}
 
 <div class="container-form">
-  <h1 style="margin-bottom: 40px; text-align: center">Создание шаблона</h1>
-  <form id="template-form" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <h1 style="margin-bottom: 40px; text-align: center;">
+        Создание шаблона
+      </h1>
+    <form id="template-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
     <label for="{{ form.template_name.id_for_label }}"
       >Название шаблона (название мероприятия):</label
