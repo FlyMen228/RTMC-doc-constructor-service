@@ -5,23 +5,26 @@
 {% endblock %}
 
 {% block content %}
-    <p>Введите своё ФИО или название Вашей организации</p>
 
-    <form action="{% url 'search-document' %}" method="get">
-        <input type="text" name="query" placeholder="ФИО или название организации" />
+<div class="document-container">
+    <h1 style="margin-bottom: 40px;">Получение документа</h1>
+    <p class="instruction">Введите своё ФИО или название Вашей организации:</p>
 
-        <button type="submit">Искать</button>
+    <form action="{% url 'search-document' %}" method="get" class="search-form">
+        <input type="text" name="query" placeholder="ФИО или название организации" class="search-input" />
+        <button type="submit" class="search-button">Искать</button>
     </form>
 
     {% if documents %}
-    <ul>
+    <ul class="document-list">
         {% for document in documents %}
-            <li>
-                <a href="{{ MEDIA_URL }}{{ document.path_to_file }}" download="{{ document.name }}.pdf">{{ document.name }}</a>
-            </li> 
+        <li class="document-item">
+            <a href="{{ MEDIA_URL }}{{ document.path_to_file }}" download="{{ document.name }}.pdf">{{ document.name }}</a>
+        </li> 
         {% endfor %}
     </ul>
-    {% else %}
-    <p>Документа с таким ФИО или названием ораганизации не найден.</p>
+    {% comment %} {% else %}
+    <p class="no-results">Документа с таким ФИО или названием организации не найден.</p> {% endcomment %}
     {% endif %}
+</div>
 {% endblock %}

@@ -1,9 +1,34 @@
+@font-face {
+  font-weight: 400;
+  font-family: "LAZURSKI";
+  src: url("../fonts/LAZURSK1.TTF");
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: "LAZURSKI";
+  src: url("../fonts/LAZURSK2.TTF");
+}
+
+@font-face {
+  font-weight: 300;
+  font-family: "LAZURSKI";
+  src: url("../fonts/LAZURSK3.TTF");
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: "LAZURSKI";
+  src: url("../fonts/LAZURSKI.TTF");
+}
+
 body {
   color: rgb(23, 23, 22);
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-image: url("../images/logged_out.png");
+  font-family: "LAZURSKI";
+  font-weight: 400;
 }
 
 /* ___________________ Header and Footer _______________________ */
@@ -107,9 +132,9 @@ footer {
 .container-form select:focus,
 .container-form input[type="file"]:focus {
   color: rgb(23, 23, 22);
-  border-color: rgb(64, 171, 2);
+  border-color: #45a049;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgb(64, 171, 2);
+  box-shadow: 0 0 0 0.2rem #45a049;
 }
 
 /* Стили для кнопки */
@@ -125,7 +150,7 @@ footer {
 }
 
 .container-form button[type="submit"]:hover {
-  background-color: rgb(56, 148, 3);
+  background-color: #45a049;
 }
 /* ___________________ Make_Template ____________________________ */
 
@@ -139,6 +164,7 @@ footer {
 }
 
 .search-form-wrapper {
+  background-color: white;
   max-width: 500px;
   padding: 30px;
   border: 1px solid #ccc;
@@ -179,9 +205,9 @@ footer {
 
 .search-form-wrapper input[type="text"]:focus {
   color: rgb(23, 23, 22);
-  border-color: rgb(64, 171, 2);
+  border-color: #45a049;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgb(64, 171, 2);
+  box-shadow: 0 0 0 0.2rem #45a049;
 }
 
 .search-form-wrapper button {
@@ -197,10 +223,11 @@ footer {
 
 .search-form-wrapper button:hover,
 .search-form-wrapper button:focus {
-  background-color: rgb(56, 148, 3);
+  background-color: #45a049;
 }
 
 .search-results-wrapper {
+  background-color: white;
   width: 450px;
   padding: 30px;
   border: 1px solid #ccc;
@@ -230,7 +257,7 @@ footer {
 
 .search-results-wrapper a:hover,
 .search-results-wrapper a:focus {
-  color: rgb(56, 148, 3);
+  color: #45a049;
 }
 
 #no-results {
@@ -298,18 +325,22 @@ footer {
   margin-top: 30px;
   padding: 10px;
   font-size: xxx-large;
-  font-weight: 900;
-  display: inline-block;
+  font-weight: bolder;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
 }
 
-.overlay .btn:hover {
+.overlay a:hover {
   padding: 2%;
   border-radius: 8px;
-  background-color: rgb(57, 151, 3);
+  background-color: #45a049;
+  text-decoration: none;
 }
 
-.overlay .btn {
-  margin-top: 20%;
+.overlay a {
+  text-decoration: none;
+  margin-top: 25%;
   font-size: xx-large;
   padding: 2%;
   color: white;
@@ -318,6 +349,9 @@ footer {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 35%;
+  display: inline-block;
+  text-align: center;
 }
 
 #carousel {
@@ -339,6 +373,7 @@ footer {
 }
 
 .container_form_load_templates {
+  background-color: white;
   max-width: 800px;
   margin: 50px auto;
   background-color: #fff;
@@ -377,9 +412,9 @@ footer {
 
 .container_form_load_templates input[type="text"]:focus {
   color: rgb(23, 23, 22);
-  border-color: rgb(64, 171, 2);
+  border-color: #45a049;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgb(64, 171, 2);
+  box-shadow: 0 0 0 0.2rem #45a049;
 }
 
 .container_form_load_templates input[type="submit"],
@@ -398,7 +433,7 @@ footer {
 
 .container_form_load_templates input[type="submit"]:hover,
 #upload-button:hover {
-  background-color: rgb(59, 155, 3);
+  background-color: #45a049;
 }
 
 .accordion-button {
@@ -420,7 +455,7 @@ footer {
 
 .accordion-body a:focus, .accordion-body a:hover {
   color: white;
-  background-color: rgb(64, 171, 2);
+  background-color: #45a049;
 }
 
 
@@ -428,14 +463,13 @@ footer {
 
 /* __________________________ logged_out____________________ */
 .logged_out_body {
-  font-family: Arial, sans-serif;
   background-color: #fff;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 82vh;
   background-image: url("../images/logged_out.png");
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -459,7 +493,7 @@ footer {
 }
 
 .logged_out_body a:hover {
-  color: rgb(51, 133, 3);
+  color: #45a049;
 }
 /* __________________________ logged_out____________________ */
 
@@ -497,9 +531,9 @@ footer {
 .form-control:focus {
   color: rgb(23, 23, 22);
   background-color: #fff;
-  border-color: rgb(64, 171, 2);
+  border-color: #45a049;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgb(64, 171, 2);
+  box-shadow: 0 0 0 0.2rem #45a049;
 }
 
 .btn-primary {
@@ -512,8 +546,8 @@ footer {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: rgb(64, 171, 2);
-  border-color: rgb(64, 171, 2);
+  background-color: #45a049;
+  border-color: #45a049;
   border-radius: 3px;
   padding: 10px;
 }
@@ -530,14 +564,13 @@ footer {
 
 /* _______________password_reset_form_______________________ */
 #password_reset_form {
-  font-family: Arial, sans-serif;
   background-color: rgb(23, 23, 22);
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 82vh;
   background-image: url("../images/password.png");
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -577,21 +610,20 @@ footer {
 }
 
 #password_reset_form button:hover {
-  background-color: rgb(62, 165, 2);
+  background-color: #45a049;
 }
 /* _______________password_reset_form_______________________ */
 
 
 /* ______________________404.html______________________________ */
 #error404 {
-  font-family: Arial, sans-serif;
   background-color: rgb(140, 34, 34);
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 82vh;
   background-image: url("../images/404.jpg");
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -640,6 +672,198 @@ footer {
 }
 
 .error-container button:hover {
-  background-color: rgb(56, 148, 3);
+  background-color: #45a049;
 }
 /* ______________________404.html______________________________ */
+
+/* _________________________login.html__________________________ */
+
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: rgb(23, 23, 22);
+  text-align: center;
+  font-weight: 700;
+}
+
+.error-message {
+  margin-bottom: 20px;
+  color: rgb(138, 19, 17);
+  text-align: center;
+  padding: 10px;
+  border: 1px solid rgb(138, 19, 17);
+  border-radius: 5px;
+}
+
+.access-message {
+  margin-bottom: 20px;
+  color: rgb(153, 153, 153);
+  text-align: center;
+  padding: 10px;
+  border: 1px solid rgb(153, 153, 153);
+  border-radius: 5px;
+}
+
+.auth-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.auth-table td {
+  display: block;
+  padding: 10px 0;
+  color: rgb(23, 23, 22);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid rgb(64, 171, 2);
+  border-radius: 0.25rem;
+  font-size: 16px;
+  box-sizing: border-box;
+  line-height: 1.5;
+  color: rgb(23, 23, 22);
+  background-color: #fff;
+  background-clip: padding-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.auth-input:focus {
+  color: rgb(23, 23, 22);
+  border-color: #45a049;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #45a049;
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(64, 171, 2);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.auth-submit:hover {
+  background-color: #45a049;
+}
+
+.password-reset {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.password-reset a {
+  color: rgb(64, 171, 2);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.password-reset a:hover {
+  color: #388E3C;
+}
+/* _________________________login.html__________________________ */
+
+/* ______________________________ get_document.html__________________________ */
+.document-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.instruction {
+  font-size: 18px;
+  color: rgb(23, 23, 22);
+  margin-bottom: 20px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+
+.search-input {
+  width: 70%;
+  margin: 0px 25px;
+  padding: 10px;
+  border: 1px solid rgb(64, 171, 2);
+  border-radius: 0.25rem;
+  font-size: 16px;
+  box-sizing: border-box;
+  line-height: 1.5;
+  color: rgb(23, 23, 22);
+  background-color: #fff;
+  background-clip: padding-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.search-input:focus {
+  color: rgb(23, 23, 22);
+  border-color: #45a049;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #45a049;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: rgb(64, 171, 2);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #45a049;
+}
+
+.document-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.document-item {
+  margin: 10px 0;
+}
+
+.document-item a {
+  color: rgb(64, 171, 2);
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.document-item a:hover {
+  color: rgb(23, 23, 22);
+}
+
+.no-results {
+  color: rgb(138, 19, 17);
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid rgb(138, 19, 17);
+  border-radius: 5px;
+}
+
+/* ______________________________ get_document.html__________________________ */

@@ -6,42 +6,40 @@
 
 {% block content %}
 
-  {% if form.errors %}
-    <p>Пользователь с такими логином и паролем не найден! Проверьте вводимые данные.</p>
-  {% endif %}
+<div class="auth-container">
+    <h2>Авторизация</h2>
 
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>У вашего аккаунта нет доступа к данной странице. Чтобы продолжить, 
-         войдите в аккаунт с необходимыми правами доступа или обратитесь к администратору.</p>
-    {% else %}
-      <p>Войдите в аккаунт, чтобы получить доступ к странице.</p>
+    {% if form.errors %}
+        <p class="error-message">Пользователь с такими логином и паролем не найден! Проверьте вводимые данные.</p>
     {% endif %}
-  {% endif %}
 
-  <form method="post" action="{% url 'login' %}">
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p class="access-message">У вашего аккаунта нет доступа к данной странице. Чтобы продолжить, войдите в аккаунт с необходимыми правами доступа или обратитесь к администратору.</p>
+        {% else %}
+            <p class="access-message">Войдите в аккаунт, чтобы получить доступ к странице.</p>
+        {% endif %}
+    {% endif %}
 
-    {% csrf_token %}
-    
-    <table>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
 
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
+        <table class="auth-table">
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td><input type="text" name="{{ form.username.name }}" class="auth-input"></td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td><input type="password" name="{{ form.password.name }}" class="auth-input"></td>
+            </tr>
+        </table>
 
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
+        <input type="submit" value="Авторизоваться" class="auth-submit">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
 
-    </table>
-
-    <input type="submit" value="Авторизоваться">
-    <input type="hidden" name="next" value="{{ next }}">
-    
-  </form>
-
-  <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+    <p class="password-reset"><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+</div>
 
 {% endblock %}
