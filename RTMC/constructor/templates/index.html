@@ -2,13 +2,12 @@
 
 {% block title %}
 <title>Ресурсный учебно-методический центр ЧелГУ</title>
-{% endblock %}
-
+{% endblock %} 
 
 {% block content %}
 <body>
   <div class="container-main-text">
-    <div id="carousel" class="carousel slide" data-ride="carousel">
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
@@ -36,34 +35,36 @@
         class="carousel-control-prev"
         href="#carousel"
         role="button"
-        data-slide="prev"
+        data-bs-slide="prev"
+        style="z-index: 3"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only"></span>
+        <span class="visually-hidden">Previous</span>
       </a>
       <a
         class="carousel-control-next"
         href="#carousel"
         role="button"
-        data-slide="next"
+        data-bs-slide="next"
+        style="z-index: 3"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only"></span>
+        <span class="visually-hidden">Next</span>
       </a>
     </div>
-    <h1 style="text-align: center">Ресурсный учебно-методический центр</h1>
+    <div class="overlay">
+      <h1>Ресурсный учебно-методический центр</h1>
+      <a href="{% url 'get-document' %}">Получить документ</a>
+    </div>
     <div class="main_block">
       <div class="mt-5">
-        <div id="second-block" style="margin: auto; display: flex; text-align: center; justify-content: center;">
-          <div id="get-document">
-            <a href="{% url 'get-document' %}">
-              Получить документ
-            </a>
-          </div>
-        </div>
-        <div id="first-block" style="width: 100%; margin: auto; text-align: center; color: rgb(153, 153, 153);">
+        <div id="first-block">
           <div>
-            Сайт предназначен для чего-то там что-то там вот бы текст какой-нибудь
+            В ЧелГУ сложилась уникальная для России система доступности высшего
+            образования для инвалидов и лиц с ограниченными возможностями
+            здоровья. В ее основу положено инклюзивное обучение инвалидов и
+            сопровождение учебы. Все это позволяет обучать инвалидов с
+            различными видами и степенью физических нарушений.
           </div>
         </div>
       </div>
