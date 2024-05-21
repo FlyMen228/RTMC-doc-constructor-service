@@ -10,7 +10,7 @@ from .forms import TemplateForm, LoadParticipantForm, LoadParticipantsForm
 
 from .models import Template, Participant
 
-from .scripts import split_csv
+from .scripts import split_csv, construct
 
 
 def index(request: request) -> HttpResponse:
@@ -30,15 +30,13 @@ def search_document(request: request) -> HttpResponse:
     if query:
 
         participants = Participant.objects.filter(
-
             Q(fullname__icontains=query) | Q(organization_name__icontains=query)
-
         )
 
         documents = set()
 
         for participant in participants:
-
+ 
             documents.add(participant.template)
             
         documents = list(documents)
@@ -46,8 +44,27 @@ def search_document(request: request) -> HttpResponse:
     else:
 
         documents = Template.objects.none()
-        
-    return render(request, 'constructor/get_document.html', {'documents': documents})
+        participants = Participant.objects.none()
+    
+    context = {
+        'documents': documents,
+        'participants': participants,
+    }
+    
+    return render(request, 'constructor/get_document.html', context)
+
+
+def construct_document(request: request):
+    
+    participant_id = request.GET.get('participant_id')
+    template_id = request.GET.get('template_id')
+    
+    participant = get_object_or_404(Participant, id=participant_id)
+    template = get_object_or_404(Template, id=template_id)
+    
+    construct(template, participant)
+    
+    return render(request, 'constructor/get_document.html')
 
 
 def make_template(request: request) -> HttpResponse:

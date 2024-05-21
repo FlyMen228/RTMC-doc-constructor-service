@@ -1,6 +1,6 @@
 from django import forms
 
-from .validations import validate_csv_format, validate_pdf_format
+from .validations import validate_csv, validate_pdf
 
 
 class TemplateForm(forms.Form):
@@ -14,7 +14,7 @@ class TemplateForm(forms.Form):
 
     template_name = forms.CharField(label='Название шаблона', required=True)
     
-    template_file = forms.FileField(label='Файл шаблона', required=True, validators=[validate_pdf_format])
+    template_file = forms.FileField(label='Файл шаблона', required=True, validators=[validate_pdf])
     
     
 class LoadParticipantForm(forms.Form):
@@ -26,4 +26,4 @@ class LoadParticipantForm(forms.Form):
 
 class LoadParticipantsForm(forms.Form):
     
-    load_file = forms.FileField(label="Файл загрузки", required=True, validators=[validate_csv_format])
+    load_file = forms.FileField(label="Файл загрузки", required=True, validators=[validate_csv])

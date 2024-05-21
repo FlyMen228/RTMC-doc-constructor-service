@@ -15,16 +15,18 @@
         <button type="submit" class="search-button">Искать</button>
     </form>
 
-    {% if documents %}
-    <ul class="document-list">
-        {% for document in documents %}
-        <li class="document-item">
-            <a href="{{ MEDIA_URL }}{{ document.path_to_file }}" download="{{ document.name }}.pdf">{{ document.name }}</a>
-        </li> 
-        {% endfor %}
-    </ul>
-    {% comment %} {% else %}
-    <p class="no-results">Документа с таким ФИО или названием организации не найден.</p> {% endcomment %}
+    {% if participants %}
+        <ul class="document-list">
+            {% for participant in participants %}
+            <li class="document-item">
+                <a href="{% url 'construct-document' %}?template_id={{ participant.template.id }}&participant_id={{ participant.id }}">
+                    {{ participant.fullname }} - {{ participant.template.name }}
+                </a>
+            </li> 
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-results">Документа с таким ФИО или названием организации не найден.</p>
     {% endif %}
 </div>
 {% endblock %}

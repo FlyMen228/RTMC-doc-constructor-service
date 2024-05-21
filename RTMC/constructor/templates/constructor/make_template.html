@@ -23,8 +23,9 @@
 
 <div class="container-form">
     <h1 style="margin-bottom: 40px; text-align: center;">
-        Создание шаблона
-      </h1>
+      Создание шаблона
+    </h1>
+    
     <form id="template-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -56,7 +57,21 @@
     />
 
     <button type="submit">Сохранить шаблон</button>
+
+    <!--Отображения ошибок валидации-->
+    {% if form.errors %}
+      <div style="color: red;">
+          <ul>
+          {% for field in form %}
+              {% for error in field.errors %}
+                  <li>{{ error }}</li>
+              {% endfor %}
+          {% endfor %}
+          </ul>
+      </div>
+    {% endif %}
   </form>
 </div>
 
 {% endblock %}
+x

@@ -57,15 +57,14 @@
             <a
               href="{% static 'files/load_participants.csv' %}"
               download="Шаблон для загрузки многих участников.csv"
-              style="text-decoration: none;"
-              >Скачать шаблон</a
-            >
+              style="text-decoration: none;">
+                Скачать шаблон
+              </a>
           </div>
           <form
             id="load-participants-form"
             method="post"
-            enctype="multipart/form-data"
-          >
+            enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
               <label for="{{ form.load_file.id_for_label }}" class="form-label"
@@ -97,6 +96,19 @@
                 Загрузить участников
               </button>
             </div>
+
+            <!--Отображения ошибок валидации-->
+            {% if form.errors %}
+              <div style="color: red;">
+                <ul>
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
           </form>
         </div>
       </div>

@@ -3,23 +3,17 @@ import os
 from django.core.exceptions import ValidationError
 
 
-def validate_pdf_format(file):
+def validate_pdf(file):
     
-    extention = os.path.splitext(file.name)[1]
-    
-    valid_extention = ['pdf',]
-    
-    if not extention.lower() in valid_extention:
+    if not file.name.endswith('.pdf'):
         
-        raise ValidationError('Неподдерживаемый формат файла. Загрузите .pdf файл!')
+        raise ValidationError('Загруженный файл должен быть в формате PDF.')
+    
 
 
-def validate_csv_format(file):
+
+def validate_csv(file):
     
-    extention = os.path.splitext(file.name)[1]
-    
-    valid_extention = ['csv',]
-    
-    if not extention.lower() in valid_extention:
+    if not file.name.endswith('.csv'):
         
-        raise ValidationError('Неподдерживаемый формат файла. Загрузите .csv файл!')
+        raise ValidationError('Загруженный файл должен быть в формате CSV.')
