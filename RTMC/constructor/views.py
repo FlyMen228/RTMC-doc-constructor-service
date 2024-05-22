@@ -1,8 +1,9 @@
 import os
+import io
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from django.http import request, HttpResponse
+from django.http import request, HttpResponse, HttpResponseNotFound, FileResponse
 from django.contrib import messages
 from django.db.models import Q
 
@@ -10,7 +11,7 @@ from .forms import TemplateForm, LoadParticipantForm, LoadParticipantsForm
 
 from .models import Template, Participant
 
-from .scripts import split_csv, construct
+from .scripts import split_csv, construct, find_fileds_coordinates
 
 
 def index(request: request) -> HttpResponse:
@@ -56,15 +57,30 @@ def search_document(request: request) -> HttpResponse:
 
 def construct_document(request: request):
     
-    participant_id = request.GET.get('participant_id')
-    template_id = request.GET.get('template_id')
+    participant = get_object_or_404(Participant, id=request.GET.get('participant_id'))
+    template = get_object_or_404(Template, id=request.GET.get('template_id'))
     
-    participant = get_object_or_404(Participant, id=participant_id)
-    template = get_object_or_404(Template, id=template_id)
     
-    construct(template, participant)
+    output_pdf_path = construct(template, participant)
     
-    return render(request, 'constructor/get_document.html')
+    
+    if not os.path.exists(output_pdf_path):
+        
+        return HttpResponseNotFound('Ошибка в работе сервиса. Попробуйте ещё раз.')
+    
+    
+    with open(output_pdf_path, 'rb') as pdf_file:
+        
+        pdf_data = pdf_file.read()
+    
+    pdf_io = io.BytesIO(pdf_data)
+    
+    response = FileResponse(pdf_io, as_attachment=True, filename=os.path.basename(output_pdf_path))
+    
+    
+    os.remove(output_pdf_path)
+        
+    return response
 
 
 def make_template(request: request) -> HttpResponse:
@@ -94,13 +110,37 @@ def make_template(request: request) -> HttpResponse:
                 for chunk in template_file.chunks():
 
                     destination.write(chunk)
-                  
-                            
-            new_template = Template(
-                name = template_name,
-                path_to_file = full_save_path,
-                doc_type = template_type,
-            )
+            
+            
+            textboxes_data = find_fileds_coordinates(full_save_path)
+            
+            if template_type == 'wo':
+            
+                new_template = Template(
+                    name = template_name,
+                    path_to_file = full_save_path,
+                    doc_type = template_type,
+                    fullname_x_coordinate = textboxes_data[0][0],
+                    fullname_y_coordinate = textboxes_data[0][1],
+                    fullname_textbox_width = textboxes_data[0][2],
+                    fullname_textbox_height = textboxes_data[0][3]
+                )
+                
+            else:
+                
+                new_template = Template(
+                    name = template_name,
+                    path_to_file = full_save_path,
+                    doc_type = template_type,
+                    fullname_x_coordinate = textboxes_data[0][0],
+                    fullname_y_coordinate = textboxes_data[0][1],
+                    fullname_textbox_width = textboxes_data[0][2],
+                    fullname_textbox_height = textboxes_data[0][3],
+                    organization_x_coordinate = textboxes_data[0][0],
+                    organization_y_coordinate = textboxes_data[0][1],
+                    organization_textbox_width = textboxes_data[0][2],
+                    organization_textbox_height = textboxes_data[0][3]
+                )
             
             new_template.save()
             
@@ -144,6 +184,7 @@ def search_template(request: request) -> HttpResponse:
 def load_participants(request: request, id: int) -> HttpResponse:
     
     template = get_object_or_404(Template, pk=id)
+    
     
     if request.method == "POST":
         

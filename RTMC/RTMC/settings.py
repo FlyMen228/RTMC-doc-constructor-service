@@ -97,6 +97,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR),
+]
+
+
 MEDIA_URL = '/documents/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR)

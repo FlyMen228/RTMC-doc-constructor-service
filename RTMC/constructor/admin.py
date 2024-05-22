@@ -25,6 +25,12 @@ class TemplateAdmin(admin.ModelAdmin):
         ('Путь до файла', {
             'fields': ['path_to_file']
         }),
+        ('Данные текстового поля ФИО', {
+            'fields': ['fullname_x_coordinate', 'fullname_y_coordinate', 'fullname_textbox_width', 'fullname_textbox_height']
+        }),
+        ('Данные текстового поля названия организации', {
+            'fields': ['organization_x_coordinate', 'organization_y_coordinate', 'organization_textbox_width', 'organization_textbox_height']
+        }),
         ('Дата создание шаблона', {
             'fields': ['creation_datetime']
         })

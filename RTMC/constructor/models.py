@@ -25,6 +25,32 @@ class Template(models.Model):
                                              help_text='Дата и время создания шаблона')
     
     
+    fullname_x_coordinate = models.FloatField(verbose_name='Х координата текстового поля ФИО', default=0,
+                                                help_text='Определяется автоматически при загрузке шаблона')
+    
+    fullname_y_coordinate = models.FloatField(verbose_name='Y координата текстового поля ФИО', default=0,
+                                                help_text='Определяется автоматически при загрузке шаблона')
+    
+    fullname_textbox_width = models.FloatField(verbose_name='Ширина текстового поля ФИО', default=0,
+                                                 help_text='Определяется автоматически при загрузке шаблона')
+    
+    fullname_textbox_height = models.FloatField(verbose_name='Высота текстового поля ФИО', default=0,
+                                                 help_text='Определяется автоматически при загрузке шаблона')
+    
+    
+    organization_x_coordinate = models.FloatField(verbose_name='Х координата текстового поля названия организации', null=True,
+                                                help_text='Определяется автоматически при загрузке шаблона')
+    
+    organization_y_coordinate = models.FloatField(verbose_name='Y координата текстового поля названия организации', null=True,
+                                                help_text='Определяется автоматически при загрузке шаблона')
+    
+    organization_textbox_width = models.FloatField(verbose_name='Ширина текстового поля названия организации', null=True,
+                                                 help_text='Определяется автоматически при загрузке шаблона')
+    
+    organization_textbox_height = models.FloatField(verbose_name='Высота текстового поля названия организации', null=True,
+                                                 help_text='Определяется автоматически при загрузке шаблона')
+    
+    
     class Meta:
         
         ordering = ['id', '-creation_datetime',]
