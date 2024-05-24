@@ -65,7 +65,7 @@ def find_fileds_coordinates(pdf_path) -> list:
 
 
 
-def create_overlay(data_dict: dict, template: Template) -> BytesIO:
+def create_overlay(data_dict: dict, template: Template):
     
     packet = io.BytesIO()
     
