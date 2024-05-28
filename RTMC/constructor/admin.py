@@ -12,7 +12,7 @@ class ParticipantInLine(admin.TabularInline):
 
 class TemplateAdmin(admin.ModelAdmin):
     
-    list_display = ('id', 'name', 'doc_type', 'creation_datetime',)
+    list_display = ('id', 'name', 'doc_type', 'creation_datetime', 'display_num_participants')
 
     list_filter = ('doc_type', 'creation_datetime',)
     

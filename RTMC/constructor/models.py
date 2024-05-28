@@ -66,6 +66,13 @@ class Template(models.Model):
     def __str__(self) -> str:
         
         return self.name
+    
+    
+    def display_num_participants(self) -> int:
+        
+        return self.participant_set.count()
+    
+    display_num_participants.short_description = 'Количество участников'
 
 
 
