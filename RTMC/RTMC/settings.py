@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-ip(i4)9v9o9994k*-rjzid8act@200r#$znv(p8c1)t4g#!04=
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['flymeniy.beget.tech', 'www.flymeniy.beget.tech', '127.0.0.1']
 
 
 INSTALLED_APPS = [
@@ -56,12 +56,16 @@ WSGI_APPLICATION = 'rtmc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rtmc_db',
-        'USER': 'rtmc_admin',
-        'PASSWORD': 'jK3425LMOp',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': 'rtmc_db',
+        #'USER': 'rtmc_admin',
+        #'PASSWORD': 'jK3425LMOp',
+        #'HOST': 'localhost',
+        #'PORT': '5432',
+        
+        ## SQLite3 подключение для хостинга
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -96,8 +100,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR),
+    os.path.join(BASE_DIR, 'constructor', 'static'),
 ]
 
 

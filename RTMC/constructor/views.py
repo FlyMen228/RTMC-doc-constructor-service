@@ -136,10 +136,10 @@ def make_template(request: request) -> HttpResponse:
                     fullname_y_coordinate = textboxes_data[0][1],
                     fullname_textbox_width = textboxes_data[0][2],
                     fullname_textbox_height = textboxes_data[0][3],
-                    organization_x_coordinate = textboxes_data[0][0],
-                    organization_y_coordinate = textboxes_data[0][1],
-                    organization_textbox_width = textboxes_data[0][2],
-                    organization_textbox_height = textboxes_data[0][3]
+                    organization_x_coordinate = textboxes_data[1][0],
+                    organization_y_coordinate = textboxes_data[1][1],
+                    organization_textbox_width = textboxes_data[1][2],
+                    organization_textbox_height = textboxes_data[1][3]
                 )
             
             new_template.save()
