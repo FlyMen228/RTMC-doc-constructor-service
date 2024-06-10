@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib.staticfiles import finders
 
 from .models import Template, Participant
-
+from . import textboxes
 
 def split_csv(csv_file) -> list:
     
@@ -28,7 +28,7 @@ def split_csv(csv_file) -> list:
 
 
 
-def find_fileds_coordinates(pdf_path) -> list:
+def find_fileds_coordinates(pdf_path) -> dict:
     
     pdf = PdfReader(pdf_path)
     
@@ -38,28 +38,29 @@ def find_fileds_coordinates(pdf_path) -> list:
         
         if annotations:
             
-            coordinates = [None, None]
+            coordinates = {}
             
             for annotation in annotations:
                 
-                if annotation['/T'] and annotation['/T'][1:-1] == 'fullname':
-                    
-                    rect = annotation['/Rect']
-                    
-                    x1, y1, x2, y2 = rect
-                    
-                    coordinates[0] = [float(x1), float(y1), float(x2) - float(x1), float(y2) - float(y1)]
+                if not annotation['/T']:
                     
                     continue
                 
-                if annotation['/T'] and annotation['/T'][1:-1] == 'organization_name':
+                
+                rect = annotation['/Rect']
+                
+                x1, y1, x2, y2 = rect
+                
+                
+                if annotation['/T'][1:-1].lower() in textboxes.Fullname:
+
+                    coordinates['fullname'] = (float(x1), float(y1), float(x2) - float(x1), float(y2) - float(y1))
+        
+                
+                if annotation['/T'][1:-1].lower() in textboxes.Organization_Name:
                     
-                    rect = annotation['/Rect']
-                    
-                    x1, y1, x2, y2 = rect
-                    
-                    coordinates[1] = (float(x1), float(y1), float(x2) - float(x1), float(y2) - float(y1))
-                    
+                    coordinates['organization_name'] = (float(x1), float(y1), float(x2) - float(x1), float(y2) - float(y1))
+                                        
         return coordinates
     
     return None

@@ -114,35 +114,27 @@ def make_template(request: request) -> HttpResponse:
             
             textboxes_data = find_fileds_coordinates(full_save_path)
             
-            if template_type == 'wo':
+            fullname_x_coordinate, fullname_y_coordinate, fullname_textbox_width, fullname_textbox_height = textboxes_data.get('fullname')
             
-                new_template = Template(
-                    name = template_name,
-                    path_to_file = full_save_path,
-                    doc_type = template_type,
-                    fullname_x_coordinate = textboxes_data[0][0],
-                    fullname_y_coordinate = textboxes_data[0][1],
-                    fullname_textbox_width = textboxes_data[0][2],
-                    fullname_textbox_height = textboxes_data[0][3]
-                )
+            organization_x_coordinate, organization_y_coordinate, organization_textbox_width, organization_textbox_height = textboxes_data.get('organization_name')
+            
                 
-            else:
-                
-                new_template = Template(
-                    name = template_name,
-                    path_to_file = full_save_path,
-                    doc_type = template_type,
-                    fullname_x_coordinate = textboxes_data[0][0],
-                    fullname_y_coordinate = textboxes_data[0][1],
-                    fullname_textbox_width = textboxes_data[0][2],
-                    fullname_textbox_height = textboxes_data[0][3],
-                    organization_x_coordinate = textboxes_data[1][0],
-                    organization_y_coordinate = textboxes_data[1][1],
-                    organization_textbox_width = textboxes_data[1][2],
-                    organization_textbox_height = textboxes_data[1][3]
-                )
+            new_template = Template(
+                name = template_name,
+                path_to_file = full_save_path,
+                doc_type = template_type,
+                fullname_x_coordinate = fullname_x_coordinate,
+                fullname_y_coordinate = fullname_y_coordinate,
+                fullname_textbox_width = fullname_textbox_width,
+                fullname_textbox_height = fullname_textbox_height,
+                organization_x_coordinate = organization_x_coordinate,
+                organization_y_coordinate = organization_y_coordinate,
+                organization_textbox_width = organization_textbox_width,
+                organization_textbox_height = organization_textbox_height
+            )
             
             new_template.save()
+            
             
             messages.success(request, 'Шаблон успешно сохранён!')
             

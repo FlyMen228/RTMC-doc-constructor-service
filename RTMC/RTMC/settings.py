@@ -56,16 +56,16 @@ WSGI_APPLICATION = 'rtmc.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': 'rtmc_db',
-        #'USER': 'rtmc_admin',
-        #'PASSWORD': 'jK3425LMOp',
-        #'HOST': 'localhost',
-        #'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'rtmc_db',
+        'USER': 'rtmc_admin',
+        'PASSWORD': 'jK3425LMOp',
+        'HOST': 'localhost',
+        'PORT': '5432',
         
-        ## SQLite3 подключение для хостинга
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        ## SQLite3 подключение для хостинга и разработки
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
