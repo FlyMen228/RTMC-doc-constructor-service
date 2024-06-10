@@ -191,7 +191,7 @@ def load_participants(request: request, id: int) -> HttpResponse:
         load_participants_form = LoadParticipantsForm(request.POST, request.FILES)
         load_participant_form = LoadParticipantForm(request.POST)
         
-        if "submit_many" in request.POST:
+        if "submit_many" in request.POST and load_participants_form.is_valid():
             
             csv_file = request.FILES['load_file']
             
