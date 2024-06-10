@@ -136,10 +136,10 @@ def make_template(request: request) -> HttpResponse:
                     fullname_y_coordinate = textboxes_data[0][1],
                     fullname_textbox_width = textboxes_data[0][2],
                     fullname_textbox_height = textboxes_data[0][3],
-                    organization_x_coordinate = textboxes_data[0][0],
-                    organization_y_coordinate = textboxes_data[0][1],
-                    organization_textbox_width = textboxes_data[0][2],
-                    organization_textbox_height = textboxes_data[0][3]
+                    organization_x_coordinate = textboxes_data[1][0],
+                    organization_y_coordinate = textboxes_data[1][1],
+                    organization_textbox_width = textboxes_data[1][2],
+                    organization_textbox_height = textboxes_data[1][3]
                 )
             
             new_template.save()
@@ -191,7 +191,7 @@ def load_participants(request: request, id: int) -> HttpResponse:
         load_participants_form = LoadParticipantsForm(request.POST, request.FILES)
         load_participant_form = LoadParticipantForm(request.POST)
         
-        if "submit_many" in request.POST:
+        if "submit_many" in request.POST and load_participants_form.is_valid():
             
             csv_file = request.FILES['load_file']
             
