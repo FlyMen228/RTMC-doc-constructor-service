@@ -50,6 +50,8 @@ def find_fileds_coordinates(pdf_path) -> list:
                     
                     coordinates[0] = [float(x1), float(y1), float(x2) - float(x1), float(y2) - float(y1)]
                     
+                    continue
+                
                 if annotation['/T'] and annotation['/T'][1:-1] == 'organization_name':
                     
                     rect = annotation['/Rect']
