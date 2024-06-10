@@ -83,7 +83,7 @@ def create_overlay(data_dict: dict, template: Template):
     text_width = can.stringWidth(data_dict['fullname'], "Tahoma Bold", font_size)
     
     
-    while text_width > template.fullname_textbox_width and font_size > 6:
+    while text_width > template.fullname_textbox_width and font_size > 4:
         
         font_size -= 1
         
